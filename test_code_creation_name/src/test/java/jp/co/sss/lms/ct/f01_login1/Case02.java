@@ -54,9 +54,9 @@ public class Case02 {
 		webDriver.findElement(By.id("loginId")).sendKeys("StudentAA001");
 		//パスワード入力
 		webDriver.findElement(By.id("password")).sendKeys("StudentAAA01");
-		//ログインボタンクリック
+		//「ログイン」ボタンクリック
 		webDriver.findElement(By.cssSelector(".btn.btn-primary")).click();
-		//エラーメッセージ比較
+		//エラーメッセージの比較
 		assertEquals("* ログインに失敗しました。", webDriver.findElement(By.cssSelector(".help-inline.error")).getText());
 		//スクリーンショット取得
 		getEvidence(new Object() {
