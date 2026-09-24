@@ -1,6 +1,7 @@
 package jp.co.sss.lms.ct.f02_faq;
 
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
 
 /**
  * 結合テスト よくある質問機能
@@ -35,28 +37,62 @@ public class Case04 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		// TODO ここに追加
+		//トップページに遷移
+		goTo("http://localhost:8080/lms");
+		//遷移成功チェック
+		assertEquals("ログイン | LMS", webDriver.getTitle());
+		//スクリーンショット取得
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
-		// TODO ここに追加
+		//ログインID入力
+		webDriver.findElement(By.id("loginId")).sendKeys("StudentAA01");
+		//パスワード入力
+		webDriver.findElement(By.id("password")).sendKeys("StudentAA01111");
+		//ログインボタンクリック
+		webDriver.findElement(By.cssSelector(".btn.btn-primary")).click();
+		//コース詳細画面に遷移チェック
+		assertEquals("コース詳細 | LMS", webDriver.getTitle());
+		//スクリーンショット取得
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
 	@Order(3)
 	@DisplayName("テスト03 上部メニューの「ヘルプ」リンクからヘルプ画面に遷移")
 	void test03() {
-		// TODO ここに追加
+		//上部メニューの「機能」を展開
+		webDriver.findElement(By.cssSelector(".dropdown-toggle")).click();
+		//ヘルプ画面遷移
+		webDriver.findElement(By.linkText("ヘルプ")).click();
+		//遷移成功確認
+		assertEquals("ヘルプ | LMS", webDriver.getTitle());
+		//スクリーンショット取得
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
 	@Order(4)
 	@DisplayName("テスト04 「よくある質問」リンクからよくある質問画面を別タブに開く")
 	void test04() {
-		// TODO ここに追加
+		//よくある質問画面を別タブで開く
+		webDriver.findElement(By.linkText("よくある質問")).click();
+		//タブのハンドル取得
+		Object[] windowHandles = webDriver.getWindowHandles().toArray();
+		//よくある質問画面タブに切り替え
+		webDriver.switchTo().window((String) windowHandles[1]);
+		//別タブで画面が開かれたかチェック
+		assertEquals("よくある質問 | LMS", webDriver.getTitle());
+		//スクリーンショット取得
+		getEvidence(new Object() {
+		});
 	}
 
 }

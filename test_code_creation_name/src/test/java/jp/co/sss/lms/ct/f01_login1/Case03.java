@@ -53,7 +53,7 @@ public class Case03 {
 		//ログインID入力
 		webDriver.findElement(By.id("loginId")).sendKeys("StudentAA01");
 		//パスワード入力
-		webDriver.findElement(By.id("password")).sendKeys("StudentAA011");
+		webDriver.findElement(By.id("password")).sendKeys("StudentAA01111");
 		//ログインボタンクリック
 		webDriver.findElement(By.cssSelector(".btn.btn-primary")).click();
 		//コース詳細画面に遷移チェック
