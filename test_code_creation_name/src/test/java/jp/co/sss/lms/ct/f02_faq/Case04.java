@@ -58,6 +58,9 @@ public class Case04 {
 		webDriver.findElement(By.cssSelector(".btn.btn-primary")).click();
 		//コース詳細画面に遷移チェック
 		assertEquals("コース詳細 | LMS", webDriver.getTitle());
+		//受講生ログイン成功チェック
+		assertTrue(webDriver.findElement(By.partialLinkText("ようこそ受講生")).isDisplayed());
+		assertTrue(webDriver.findElement(By.partialLinkText("さん")).isDisplayed());
 		//スクリーンショット取得
 		getEvidence(new Object() {
 		});
